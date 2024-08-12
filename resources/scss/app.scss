@@ -19,11 +19,11 @@ h5 {
 }
 
 label {
-    @apply text-sm font-medium text-gray-900;
+    @apply block mb-2 text-sm font-medium text-gray-900;
 }
 
 .input-app {
-    @apply bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5;
+    @apply bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5;
 
     &.error {
         @apply border-red-500;
@@ -100,9 +100,9 @@ h1 {
 }
 
 .card {
-    @apply w-full bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 p-4;
+    @apply max-w-sm bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 p-4;
 }
 
 .input-file {
-    @apply w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50;
+    @apply w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white;
 }

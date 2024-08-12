@@ -12,6 +12,7 @@ class Index extends Component
     public $name;
     public $genreId;
     public $isEditing = false;
+    public $showModal = false;
 
     protected $rules = [
         'name' => 'required|string|min:3|unique:genres,name',
@@ -28,14 +29,18 @@ class Index extends Component
         Genre::create(['name' => $this->name]);
         $this->resetForm();
         $this->genres = Genre::all();
+        $this->showModal = false;
     }
 
     public function edit($id)
     {
+        $this->resetForm();
         $this->isEditing = true;
         $this->genreId = $id;
         $genre = Genre::findOrFail($id);
         $this->name = $genre->name;
+        $this->showModal = true;
+
     }
 
     public function update()
@@ -45,6 +50,7 @@ class Index extends Component
         $genre->update(['name' => $this->name]);
         $this->resetForm();
         $this->genres = Genre::all();
+        $this->showModal = false;
     }
 
     public function delete($id)
@@ -53,11 +59,18 @@ class Index extends Component
         $this->genres = Genre::all();
     }
 
+    public function showCreateModal()
+    {
+        $this->resetForm();
+        $this->showModal = true;
+    }
+
     public function resetForm()
     {
         $this->name = '';
         $this->genreId = null;
         $this->isEditing = false;
+        $this->showModal = false;
     }
 
     public function render()

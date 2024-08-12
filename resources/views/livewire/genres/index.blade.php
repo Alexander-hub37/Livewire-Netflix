@@ -1,27 +1,23 @@
-<div>
-    <h1>Genres</h1>
-
-    <div>
-        <form wire:submit.prevent="{{ $isEditing ? 'update' : 'create' }}">
-            <input type="text" wire:model="name" placeholder="Enter genre name">
-            @error('name') <span>{{ $message }}</span> @enderror
-            <button type="submit">{{ $isEditing ? 'Update' : 'Create' }}</button>
-            @if ($isEditing)
-                <button type="button" wire:click="resetForm">Cancel</button>
-            @endif
-        </form>
+<div class="container-fluid">
+    
+    <div class="flex items-center justify-between mb-4">
+        <button wire:click="showCreateModal" class="button-primary" >Add New Genre</button>
+        @include('components.modals.genre')
     </div>
 
-    <div>
-        <h2>Existing Genres</h2>
-        <ul>
-            @foreach($genres as $genre)
-                <li>
-                    {{ $genre->name }}
-                    <button wire:click="edit({{ $genre->id }})">Edit</button>
-                    <button wire:click="delete({{ $genre->id }})">Delete</button>
-                </li>
-            @endforeach
-        </ul>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        @foreach($genres as $genre)
+            <div class=" flex flex-col items-center pb-10 border border-gray-200 rounded-lg">
+                <h5>{{ $genre->name }}</h5>
+                    <div class="flex mt-4 md:mt-6">
+                        <button wire:click="edit({{ $genre->id }})">
+                            @include('components.icons.edit')
+                        </button>
+                        <button wire:click="delete({{ $genre->id }})">
+                            @include('components.icons.delete')
+                        </button>
+                    </div>
+            </div>
+        @endforeach
     </div>
 </div>
