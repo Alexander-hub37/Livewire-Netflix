@@ -18,5 +18,12 @@ class RoleSeeder extends Seeder
     {
         $roleAdmin = Role::create(['name' => 'Admin']);
         $roleUser = Role::create(['name' => 'User']);
+
+        Permission::create(['name' => 'genres'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'movies'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'browse'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'search.movies'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'playlists'])->syncRoles([$roleAdmin, $roleUser]);
+
     }
 }

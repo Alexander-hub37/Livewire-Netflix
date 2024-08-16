@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? 'Page Title' }}</title>
+        <title>{{ $title ?? 'Netflix' }}</title>
         @vite(['resources/scss/app.scss', 'resources/js/app.js'])
         @livewireStyles
     </head>
-    <body>
-            <x-layouts.navbar />
+    <body class="bg-black text-white">
+        <x-layouts.navbar />
             {{ $slot }}
             @livewireScripts
     </body>

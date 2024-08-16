@@ -8,18 +8,40 @@ use App\Livewire\Movies\Movies;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
+use App\Livewire\Browse\MovieSearch;
+use App\Livewire\Browse\MainBrowse;
+use App\Livewire\PlaylistManager;
+
 
 Route::get('/register', Register::class)->name('register')->middleware('guest');
 Route::get('/login', Login::class)->name('login')->middleware('guest');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
-        return redirect()->route('genres');
+        return redirect()->route('browse');
     });
-    Route::get('/genres', Index::class)->name('genres');
-    Route::get('/movies', Movies::class)->name('movies');
+    Route::group(['middleware' => ['can:genres']], function () {
+        Route::get('/genres', Index::class)->name('genres');      
+    });
+
+    Route::group(['middleware' => ['can:movies']], function () {
+        Route::get('/movies', Movies::class)->name('movies'); 
+    });
+
+    Route::group(['middleware' => ['can:browse']], function () {
+        Route::get('/browse', MainBrowse::class)->name('browse');
+    });
+
+    Route::group(['middleware' => ['can:search.movies']], function () {
+        Route::get('/search-movies', MovieSearch::class)->name('search.movies');
+    });
+
+    Route::group(['middleware' => ['can:playlists']], function () {
+        Route::get('/playlists', PlaylistManager::class)->name('playlists');
+    });
+
+
     Route::get('/logout', [Logout::class, 'logout'])->name('logout');
-    
 });
 
 

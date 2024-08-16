@@ -4,6 +4,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-6 sm:h-9" alt="Netflix Logo">
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
             <button type="button" class="flex text-sm bg-red-700 rounded-lg md:me-0 focus:ring-4 focus:ring-red-700" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full" src="https://img.icons8.com/?size=100&id=85yg4VIbT8Gd&format=png&color=000000" alt="user photo">
@@ -31,14 +32,31 @@
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-black">
             <li>
-                <a href="{{ route('movies') }}" class="nav-link {{request()->routeIs('movies') ? 'active' : '' }}">Movies</a>
+                @can('movies')
+                    <a href="{{ route('movies') }}" class="nav-link {{request()->routeIs('movies') ? 'active' : '' }}">Movies</a>
+                @endcan
             </li>
             <li>
-                <a href="{{ route('genres') }}" class="nav-link {{request()->routeIs('genres') ? 'active' : '' }}">Genders</a>
+                @can('genres')
+                    <a href="{{ route('genres') }}" class="nav-link {{request()->routeIs('genres') ? 'active' : '' }}">Genders</a>
+                @endcan
             </li>
             <li>
-                <a href=""  class="nav-link {{request()->routeIs('browse.index') ? 'active' : '' }}">Netflix</a>
+                @can('browse')
+                    <a href="{{ route('browse') }}" class="nav-link {{request()->routeIs('browse') ? 'active' : '' }}">Netflix</a>
+                @endcan
             </li>
+            <li>
+                @can('playlists')
+                    <a href="{{ route('playlists') }}" class="nav-link {{request()->routeIs('playlists') ? 'active' : '' }}">My list</a>
+                @endcan
+            </li>
+            <li>
+                @can('search.movies')
+                    <a href="{{ route('search.movies') }}" class="nav-link {{request()->routeIs('search.movies') ? 'active' : '' }}">Search</a>
+                @endcan
+            </li>
+           
             </ul>
         </div>    
         </div>

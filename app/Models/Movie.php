@@ -22,4 +22,15 @@ class Movie extends Model
     {
         return $this->belongsToMany(Genre::class, 'genre_movie');
     }
+
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class, 'playlist_movie');
+    }
+
+    public function qualifications()
+    {
+        return $this->hasMany(Qualification::class);
+    }
+
 }

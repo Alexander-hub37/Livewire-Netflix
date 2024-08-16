@@ -1,5 +1,5 @@
  @if($showModal)
- <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-25">
+ <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-25 p-4">
      <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
          
          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">

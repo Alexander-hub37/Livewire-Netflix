@@ -20,7 +20,7 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             if (Auth::user()->hasVerifiedEmail()) {
-                return redirect()->route('genres');
+                return redirect()->route('browse');
             } else {
                 Auth::logout();
                 session()->flash('message', 'Please verify your email before logging in.');
@@ -28,7 +28,7 @@ class Login extends Component
             }
         }
 
-        session()->flash('message', 'Invalid credentials.');
+        session()->flash('error', 'Invalid credentials.');
     }
     
     public function render()

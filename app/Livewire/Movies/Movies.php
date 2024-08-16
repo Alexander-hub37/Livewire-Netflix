@@ -61,7 +61,7 @@ class Movies extends Component
         $this->resetForm();
         $this->isEditing = true;
         $this->movieId = $id;
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::find($id);
         $this->title = $movie->title;
         $this->description = $movie->description;
         $this->selectedGenres = $movie->genres->pluck('id')->toArray();
@@ -72,7 +72,7 @@ class Movies extends Component
     {
         $this->validate();
 
-        $movie = Movie::findOrFail($this->movieId);
+        $movie = Movie::find($this->movieId);
 
         if ($this->image) {
             if($movie->image){

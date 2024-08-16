@@ -37,7 +37,7 @@ class Index extends Component
         $this->resetForm();
         $this->isEditing = true;
         $this->genreId = $id;
-        $genre = Genre::findOrFail($id);
+        $genre = Genre::find($id);
         $this->name = $genre->name;
         $this->showModal = true;
 
@@ -46,7 +46,7 @@ class Index extends Component
     public function update()
     {
         $this->validate();
-        $genre = Genre::findOrFail($this->genreId);
+        $genre = Genre::find($this->genreId);
         $genre->update(['name' => $this->name]);
         $this->resetForm();
         $this->genres = Genre::all();

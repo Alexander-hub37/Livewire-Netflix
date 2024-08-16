@@ -2,28 +2,28 @@
     <form wire:submit.prevent="register" class="space-y-6">
         <h5> Sign up to our platform </h5>
         <div>
-            <label for="email">Your name</label>
+            <label>Your name</label>
             <input type="text" wire:model="name" placeholder="Name" class="input-app @error('name') error @else no-error @enderror">
             @error('name')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
         <div>
-            <label for="password">Your email</label>
+            <label>Your email</label>
             <input type="email" wire:model="email" placeholder="Email" class="input-app @error('email') error @else no-error @enderror">
             @error('email')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
         <div>
-            <label for="password">Your password</label>
+            <label>Your password</label>
             <input type="password" wire:model="password" placeholder="Password" class="input-app @error('password') error @else no-error @enderror">
             @error('password')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
         <div>
-            <label for="password">Confirm password</label>
+            <label>Confirm password</label>
             <input type="password" wire:model="password_confirmation" placeholder="Confirm Password" class="input-app @error('password_confirmation') error @else no-error @enderror">
             @error('password_confirmation')
                 <div class="error">{{ $message }}</div>
