@@ -25,17 +25,14 @@
           <h2 class="text-2xl font-bold py-4">{{ $genreName }}</h2>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           @foreach ($movies as $movie)
-            <div class="container-image group">
+            <div wire:click="selectMovie({{ $movie->id }})" class="container-image group">
               <div class="container-info group-hover:opacity-100">
                 <div class="p-4 space-y-2 pb-6">
                     <div class="font-bold text-sm md:text-xl">{{ $movie->title }}</div>
                     <div class="opacity-60 text-sm ">{{ $movie->description }}</div>
                 </div>
               </div>
-                <img wire:click="selectMovie({{ $movie->id }})"
-                    class="max-w-full rounded-lg cursor-pointer"
-                    src="{{ $movie->image ? asset('storage/' . $movie->image) : '' }}"
-                    alt="{{ $movie->title }}" />
+                <img class="max-w-full rounded-lg" src="{{ $movie->image ? asset('storage/' . $movie->image) : '' }}" alt="{{ $movie->title }}" />
             </div>
           @endforeach
           @include('components.modals.mainBrowse')

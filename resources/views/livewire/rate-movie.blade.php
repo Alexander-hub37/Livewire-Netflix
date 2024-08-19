@@ -15,6 +15,4 @@
             Submit Rating
         </button>
     </form>
-    
-
 </div>

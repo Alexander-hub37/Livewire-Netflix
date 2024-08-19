@@ -1,9 +1,9 @@
 @if ($selectedMovie)
     <div class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-gray-600 bg-opacity-5">
         <div class="relative w-3/4 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden">
-            <img src="{{ $selectedMovie->image ? asset('storage/' . $selectedMovie->image) : '' }}" alt="{{ $selectedMovie->title }}" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+            <img src="{{ $selectedMovie->image ? asset('storage/' . $selectedMovie->image) : '' }}" alt="{{ $selectedMovie->title }}" class="absolute w-full h-full object-cover rounded-lg">
             
-            <div class="absolute top-4 right-4 z-10 duration-300 hover:scale-110">
+            <div class="absolute top-4 right-4 z-20 duration-300 hover:scale-110">
                 <button type="button" wire:click="closeModal" class="bg-white bg-opacity-75 rounded-full p-2">
                     @include('components.icons.close-dark')
                 </button>
@@ -17,16 +17,16 @@
                     
                   
                     <div class="flex space-x-4 mt-4">
-                        <button class="px-6 py-3 text-lg font-semibold text-black bg-white rounded-md">Play</button>
-                        <button class="px-6 py-3 text-lg font-semibold bg-gray-700 bg-opacity-70 rounded-md">More information</button>
+                        <button class="px-3 py-1.5 md:px-6 md:py-3 text-sm md:text-lg font-semibold text-black bg-white rounded-md">Play</button>
+                        <button class="px-3 py-1.5 md:px-6 md:py-3 text-sm md:text-lg font-semibold bg-gray-700 bg-opacity-70 rounded-md">More information</button>
                     </div>
                 </div>
-
-                <div class="flex space-x-4 bg-black p-4 ">
-                    <div class="w-1/2">
+                <div class="flex flex-wrap md:flex-nowrap bg-black">
+                
+                    <div class="w-full md:w-1/2 order-1 md:order-1 p-4">
                         <livewire:add-to-playlist :movieId="$selectedMovie->id" />
                     </div>
-                    <div class="w-1/2">
+                    <div class="w-full md:w-1/2 order-2 md:order-2 p-4">
                         <livewire:rate-movie :movieId="$selectedMovie->id" />
                     </div>
                 </div>

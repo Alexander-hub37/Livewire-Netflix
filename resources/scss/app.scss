@@ -94,7 +94,7 @@ table {
 }
 
 .container-image {
-    @apply duration-300 hover:scale-105 overflow-hidden rounded-lg relative;
+    @apply duration-300 hover:scale-105 overflow-hidden rounded-lg relative cursor-pointer;
 
     .container-info {
         @apply rounded-lg opacity-0 duration-300 absolute from-black/80 bg-gradient-to-t inset-x-0 bottom-0 text-white;
