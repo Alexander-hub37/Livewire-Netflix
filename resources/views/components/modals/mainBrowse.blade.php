@@ -5,10 +5,7 @@
             
             <div class="absolute top-4 right-4 z-10">
                 <button type="button" wire:click="closeModal" class="bg-white bg-opacity-75 rounded-full p-2">
-                    <svg class="w-5 h-5 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
+                    @include('components.icons.close-dark')
                 </button>
             </div>
 
@@ -21,7 +18,7 @@
                   
                     <div class="flex space-x-4 mt-4">
                         <button class="px-6 py-3 text-lg font-semibold text-black bg-white rounded-md">Play</button>
-                        <button class="px-6 py-3 text-lg font-semibold text-white bg-gray-700 bg-opacity-70 rounded-md">More information</button>
+                        <button class="px-6 py-3 text-lg font-semibold bg-gray-700 bg-opacity-70 rounded-md">More information</button>
                     </div>
                 </div>
 

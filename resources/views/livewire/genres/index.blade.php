@@ -7,9 +7,9 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         @foreach($genres as $genre)
-            <div class=" flex flex-col items-center pb-10 border border-gray-200 rounded-lg">
+            <div class="flex flex-col items-center pb-8 border border-gray-200 rounded-lg">
                 <h5>{{ $genre->name }}</h5>
-                    <div class="flex mt-4 md:mt-6">
+                    <div class="flex mt-4">
                         <button wire:click="edit({{ $genre->id }})">
                             @include('components.icons.edit')
                         </button>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Models\User;
+use Spatie\Permission\Traits\HasRoles;
 
 use Livewire\Component;
 
@@ -28,12 +29,14 @@ class Register extends Component
             'password' => Hash::make($this->password),
         ]);
 
+        $user->assignRole('User');
+
         event(new Registered($user));
         Auth::login($user);
 
         session()->flash('message', 'Registration successful! Please check your email for verification.');
 
-        return redirect()->route('genres');
+        return redirect()->route('browse');
     }
 
     public function render()

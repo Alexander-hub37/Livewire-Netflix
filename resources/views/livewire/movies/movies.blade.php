@@ -1,9 +1,10 @@
 <div class="container-fluid">
 
     <div class="flex items-center justify-between mb-4">
-        <button wire:click="showCreateModal" class="button-primary" >Add New Movie</button>
+        <button wire:click="showCreateModal" class="button-primary" >Add New Movie</button>   
         @include('components.modals.movie')
     </div>
+    
     <div class="table-container">
         <table>
             <thead>
@@ -18,7 +19,7 @@
 
             @foreach($movies as $movie)
             <tbody>
-                <td><img src="{{ $movie->image ? asset('storage/' . $movie->image) : ''}}" alt="{{$movie->title}}"></td>
+                <td><img class="w-32" src="{{ $movie->image ? asset('storage/' . $movie->image) : ''}}" alt="{{$movie->title}}"></td>
                 <td>{{ $movie->title }}</td>
                 <td>{{ $movie->description }}</td>
                 <td>{{ $movie->genres->pluck('name')->join(', ') }}</td>
