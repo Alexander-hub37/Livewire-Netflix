@@ -16,6 +16,9 @@ use App\Livewire\Auth\ResetPassword;
 
 
 Route::middleware('guest')->group(function (){
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
     Route::get('/register', Register::class)->name('register');
     Route::get('/login', Login::class)->name('login');
 });
