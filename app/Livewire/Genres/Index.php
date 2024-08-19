@@ -30,6 +30,8 @@ class Index extends Component
         $this->resetForm();
         $this->genres = Genre::all();
         $this->showModal = false;
+        session()->flash('message', 'Genre created successfully! ');
+        session()->flash('message_type', 'success');
     }
 
     public function edit($id)
@@ -51,12 +53,16 @@ class Index extends Component
         $this->resetForm();
         $this->genres = Genre::all();
         $this->showModal = false;
+        session()->flash('message', 'Genre updated successfully! ');
+        session()->flash('message_type', 'success');
     }
 
     public function delete($id)
     {
         Genre::findOrFail($id)->delete();
         $this->genres = Genre::all();
+        session()->flash('message', 'Genre deleted successfully! ');
+        session()->flash('message_type', 'success');
     }
 
     public function showCreateModal()

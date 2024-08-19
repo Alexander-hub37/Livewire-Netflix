@@ -36,6 +36,7 @@ class PlaylistManager extends Component
         $this->newPlaylistName = '';
         $this->showModal = false;
         session()->flash('message', 'Playlist created successfully!');
+        session()->flash('message_type', 'success');
     }
 
 
@@ -44,12 +45,14 @@ class PlaylistManager extends Component
         $playlist = Playlist::find($playlistId);
 
         if (!$playlist) {
-            session()->flash('error', 'Playlist not found.');
+            session()->flash('message', 'Playlist not found.');
+            session()->flash('message_type', 'error');
             return;
         }
 
         $playlist->movies()->detach($movieId);
         session()->flash('message', 'Movie removed from playlist.');
+        session()->flash('message_type', 'success');
 
 
         $this->playlists = auth()->user()->playlists()->with('movies')->get();
@@ -60,12 +63,14 @@ class PlaylistManager extends Component
         $playlist = Playlist::find($playlistId);
 
         if (!$playlist) {
-            session()->flash('error', 'Playlist not found.');
+            session()->flash('message', 'Playlist not found.');
+            session()->flash('message_type', 'error');
             return;
         }
 
         $playlist->delete();
         session()->flash('message', 'Playlist deleted successfully! ');
+        session()->flash('message_type', 'success');
 
         $this->playlists = auth()->user()->playlists()->with('movies')->get();
     }

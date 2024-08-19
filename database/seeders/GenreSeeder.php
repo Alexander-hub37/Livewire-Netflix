@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use App\Models\Genre;
+
 
 class GenreSeeder extends Seeder
 {
@@ -28,10 +28,9 @@ class GenreSeeder extends Seeder
         ];
 
         foreach ($genres as $genre) {
-            DB::table('genres')->insert([
+
+            Genre::create([
                 'name' => $genre,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
             ]);
         }
     }

@@ -11,35 +11,27 @@ use App\Livewire\Auth\Logout;
 use App\Livewire\Browse\MovieSearch;
 use App\Livewire\Browse\MainBrowse;
 use App\Livewire\PlaylistManager;
+use App\Livewire\Auth\ForgotPassword;
+use App\Livewire\Auth\ResetPassword;
 
 
-Route::get('/register', Register::class)->name('register')->middleware('guest');
-Route::get('/login', Login::class)->name('login')->middleware('guest');
+Route::middleware('guest')->group(function (){
+    Route::get('/register', Register::class)->name('register');
+    Route::get('/login', Login::class)->name('login');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('browse');
-    });
-    Route::group(['middleware' => ['can:genres']], function () {
-        Route::get('/genres', Index::class)->name('genres');      
+
+    Route::group(['middleware' => ['role:Admin']], function () { 
+        Route::get('/genres', Index::class)->name('genres');
+        Route::get('/movies', Movies::class)->name('movies');
     });
 
-    Route::group(['middleware' => ['can:movies']], function () {
-        Route::get('/movies', Movies::class)->name('movies'); 
-    });
-
-    Route::group(['middleware' => ['can:browse']], function () {
-        Route::get('/browse', MainBrowse::class)->name('browse');
-    });
-
-    Route::group(['middleware' => ['can:search.movies']], function () {
+    Route::group(['middleware' => ['role:Admin|User']], function () { 
+        Route::get('/browse', MainBrowse::class)->name('browse'); 
         Route::get('/search-movies', MovieSearch::class)->name('search.movies');
-    });
-
-    Route::group(['middleware' => ['can:playlists']], function () {
         Route::get('/playlists', PlaylistManager::class)->name('playlists');
     });
-
 
     Route::get('/logout', [Logout::class, 'logout'])->name('logout');
 });
@@ -60,3 +52,6 @@ Route::post('/email/verification-notification', function (Request $request) {
  
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/forgot-password', ForgotPassword::class)->name('password.request');
+Route::get('/reset-password/{token}', ResetPassword::class)->name('password.reset');

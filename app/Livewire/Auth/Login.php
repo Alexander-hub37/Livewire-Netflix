@@ -24,11 +24,13 @@ class Login extends Component
             } else {
                 Auth::logout();
                 session()->flash('message', 'Please verify your email before logging in.');
+                session()->flash('message_type', 'success');
                 return;
             }
         }
 
-        session()->flash('error', 'Invalid credentials.');
+        session()->flash('message', 'Invalid credentials.');
+        session()->flash('message_type', 'error');
     }
     
     public function render()

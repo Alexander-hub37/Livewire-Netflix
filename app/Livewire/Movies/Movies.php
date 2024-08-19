@@ -53,6 +53,8 @@ class Movies extends Component
         $this->resetForm();
         $this->movies = Movie::all();
         $this->showModal = false;
+        session()->flash('message', 'Movie created successfully! ');
+        session()->flash('message_type', 'success');
 
     }
 
@@ -95,6 +97,9 @@ class Movies extends Component
         $this->movies = Movie::all();
         $this->showModal = false;
 
+        session()->flash('message', 'Movie updated successfully! ');
+        session()->flash('message_type', 'success');
+
     }
 
     public function delete($id)
@@ -105,6 +110,8 @@ class Movies extends Component
         }
         $movie->delete();
         $this->movies = Movie::all();
+        session()->flash('message', 'Movie deleted successfully! ');
+        session()->flash('message_type', 'success');
     }
 
     public function showCreateModal()

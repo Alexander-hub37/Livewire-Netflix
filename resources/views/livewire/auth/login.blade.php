@@ -14,11 +14,15 @@
             <div class="error">{{ $message }}</div>
         @enderror
     </div>
+
+    <div class="flex justify-end">
+        <a href="{{ route('password.request') }}" class="text-sm font-medium text-red-700 hover:underline">Forgot your password?</a>
+    </div>
     
     @include('livewire.message')
 
     <button type="submit" class="button-primary w-full">Login</button>
-
+    
     <div class="text-sm font-medium text-gray-500">
         Not registered? <a href="{{ route('register') }}" class="text-red-700 hover:underline">Create account</a>
     </div> 

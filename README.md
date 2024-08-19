@@ -1,66 +1,58 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Streaming Platform with Laravel Livewire
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a web application for managing movies, allowing users to create playlists, rate movies, and much more. The application is developed using Laravel Livewire and styled with Tailwind CSS.
 
-## About Laravel
+## Prerequisites
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Before you begin, make sure you have the following tools installed on your system:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **[PHP](https://www.php.net/downloads.php)**
+- **[Composer](https://getcomposer.org/download/)**
+- **[Node.js](https://nodejs.org/)**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Instalación
 
-## Learning Laravel
+1. Clone this repository to your local machine.
+2. Run `composer install` to install Laravel dependencies.
+3. Run `npm install` to install Node.js dependencies.
+4. Copy the `.env.example` file and rename it to `.env`. Then, configure the environment variables according to your development setup.
+5. Run `php artisan key:generate` to generate a new application key.
+6. Run `php artisan storage:link` to create a symbolic link for storing images and other assets
+7. Run `php artisan migrate --seed` to migrate the database and seed it with initial data.
+8. Run `php artisan serve` to start the development server.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```sh
+git clone https://github.com/Alexander-hub37/Livewire-Netflix.git
+cd livewire-netflix
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan storage:link
+php artisan migrate --seed
+php artisan serve
+npm run dev
+```
+## Usage
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Open your browser and go to `http://localhost:8000` to view the application.
+2. You should see the login page. Enter your credentials to log in.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Application Features
 
-## Laravel Sponsors
+This platform supports two roles: Admin and User.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **Admin Features**
+    - **Manage movies**: Add, edit, and delete movies in the system.
+    - **Manage genres**: Categorize movies by genre.
+- **User Features**
+    - **View Movies**: Browse through the available movies.
+    - **Rate Movies**: Rate movies once, with the ability to update your rating later.
+    - **Create Playlists**: Organize favorite movies into custom playlists.
+    - **Search for Movies**: Use a search bar to find specific movies by title.
+    - **Add Movies to Playlists**: Easily add movies to any of your created playlists.
+    - **Account Management**: Sign up, log in, verify email, and reset the password.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Feel free to use and re-use any way you want.

@@ -3,6 +3,7 @@
     <div class="flex items-center justify-between mb-4">
         <button wire:click="showCreateModal" class="button-primary" >Add New Genre</button>
         @include('components.modals.genre')
+        @include('livewire.message')
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -1,9 +1,9 @@
 @if ($selectedMovie)
-    <div class="fixed inset-0 flex items-center justify-center z-50 p-4 ">
+    <div class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-gray-600 bg-opacity-5">
         <div class="relative w-3/4 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden">
             <img src="{{ $selectedMovie->image ? asset('storage/' . $selectedMovie->image) : '' }}" alt="{{ $selectedMovie->title }}" class="absolute inset-0 w-full h-full object-cover rounded-lg">
             
-            <div class="absolute top-4 right-4 z-10">
+            <div class="absolute top-4 right-4 z-10 duration-300 hover:scale-110">
                 <button type="button" wire:click="closeModal" class="bg-white bg-opacity-75 rounded-full p-2">
                     @include('components.icons.close-dark')
                 </button>

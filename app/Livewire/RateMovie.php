@@ -11,10 +11,16 @@ class RateMovie extends Component
 {
     public $movieId;
     public $rating;
+    public $currentRating;
 
     protected $rules = [
         'rating' => 'required|integer',
     ];
+
+    public function mount() 
+    {
+        $this->loadCurrentRating(); 
+    }
 
     public function rateMovie()
     {
@@ -30,6 +36,7 @@ class RateMovie extends Component
                 'value' => $this->rating,
             ]);
             session()->flash('message', 'Movie rating updated successfully!');
+            session()->flash('message_type', 'success');
 
         } else {
             
@@ -40,6 +47,22 @@ class RateMovie extends Component
             ]);
 
             session()->flash('message', 'Movie rated successfully!');
+            session()->flash('message_type', 'success');
+        }
+    }
+
+
+    public function loadCurrentRating()
+    {
+        $userId = Auth::id();
+        $Qualification = Qualification::where('movie_id', $this->movieId)->where('user_id', $userId)->first();
+
+        if ($Qualification) {
+            $this->currentRating = $Qualification->value;
+            $this->rating = $this->currentRating; 
+        } else {
+            $this->currentRating = null; 
+            $this->rating = null; 
         }
     }
 

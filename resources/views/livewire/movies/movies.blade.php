@@ -3,6 +3,7 @@
     <div class="flex items-center justify-between mb-4">
         <button wire:click="showCreateModal" class="button-primary" >Add New Movie</button>   
         @include('components.modals.movie')
+        @include('livewire.message')
     </div>
     
     <div class="table-container">

@@ -16,7 +16,8 @@ class TopRatedMovies extends Component
 
     public function getTopRatedMovies()
     {
-        return Movie::withAvg('qualifications', 'value')->orderBy('qualifications_avg_value', 'desc')->limit(5)->get();    }
+        return Movie::withAvg('qualifications', 'value')->orderBy('qualifications_avg_value', 'desc')->limit(5)->get();   
+    }
 
     public function render()
     {
