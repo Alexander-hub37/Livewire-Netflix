@@ -12,7 +12,7 @@
               <div class="container-info group-hover:opacity-100">
                 <div class="p-4 space-y-2 pb-6">
                     <div class="font-bold text-sm md:text-xl">{{ $movie->title }}</div>
-                    <div class="opacity-60 text-sm ">{{ $movie->description }}</div>
+                    <div class="opacity-60 text-sm ">{!! $movie->description !!}</div>
                   </div>
               </div>
               <img class="max-w-full rounded-lg " src="{{ asset('storage/' . $movie->image) }}"

@@ -22,15 +22,15 @@
             <tbody>
                 <td><img class="w-32" src="{{ $movie->image ? asset('storage/' . $movie->image) : ''}}" alt="{{$movie->title}}"></td>
                 <td>{{ $movie->title }}</td>
-                <td>{{ $movie->description }}</td>
+                <td>{!! $movie->description !!}</td>
                 <td>{{ $movie->genres->pluck('name')->join(', ') }}</td>
                 <td>
                     <div class="flex">    
                         <button wire:click="edit({{ $movie->id }})">
-                            @include('components.icons.edit')
+                            <x-icons.edit />
                         </button>
                         <button wire:click="delete({{ $movie->id }})">
-                            @include('components.icons.delete')
+                            <x-icons.delete />
                         </button>
                     </div>
                 </td>
@@ -38,5 +38,6 @@
             @endforeach
         </table>
     </div>
-
+    <br>
+    {{ $movies->links() }}
 </div>

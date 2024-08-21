@@ -5,7 +5,7 @@
             
             <div class="absolute top-4 right-4 z-20 duration-300 hover:scale-110">
                 <button type="button" wire:click="closeModal" class="bg-white bg-opacity-75 rounded-full p-2">
-                    @include('components.icons.close-dark')
+                    <x-icons.close-dark />
                 </button>
             </div>
 
@@ -13,7 +13,7 @@
                 
                 <div class="flex flex-col flex-grow justify-end p-6 text-left text-white">
                     <h2 class="text-2xl font-bold mb-4">{{ $selectedMovie->title }}</h2>
-                    <p class="text-lg md:text-xl lg:text-2xl">{{ $selectedMovie->description }}</p>
+                    <p class="text-lg md:text-xl lg:text-2xl">{!! $selectedMovie->description !!}</p>
                     
                   
                     <div class="flex space-x-4 mt-4">

@@ -14,7 +14,7 @@
                 <div class="flex items-center justify-between border-b">
                     <h2 class="text-xl font-semibold mb-3">{{ $playlist->name }}</h2>
                     <button wire:click="deletePlaylist({{ $playlist->id }})" >
-                        @include('components.icons.close')
+                        <x-icons.close />
                     </button>
                 </div>
                 @if ($playlist->movies->isEmpty())
@@ -24,12 +24,12 @@
                     @foreach($playlist->movies as $movie)
                     <div class="container-image group">                        
                         <button wire:click="removeFromPlaylist({{ $movie->id }}, {{ $playlist->id }})" class="absolute top-2 right-2 p-2 bg-white rounded-full">
-                            @include('components.icons.close-dark')
+                            <x-icons.close-dark />
                         </button>
                         <div class="container-info group-hover:opacity-100">
                             <div class="p-4 space-y-2 pb-6">
                                 <div class="font-bold text-sm md:text-xl">{{ $movie->title }}</div>
-                                <div class="opacity-60 text-sm ">{{ $movie->description }}</div>
+                                <div class="opacity-60 text-sm ">{!! $movie->description !!}</div>
                             </div>
                         </div>
                         <img class="max-w-full rounded-lg" src="{{ $movie->image ? asset('storage/' . $movie->image) : ''}}" alt="{{ $movie->title }}">
