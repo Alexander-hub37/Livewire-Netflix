@@ -12,13 +12,15 @@
                 <h5>{{ $genre->name }}</h5>
                     <div class="flex mt-4">
                         <button wire:click="edit({{ $genre->id }})">
-                            @include('components.icons.edit')
+                            <x-icons.edit />
                         </button>
                         <button wire:click="delete({{ $genre->id }})">
-                            @include('components.icons.delete')
+                            <x-icons.delete />
                         </button>
                     </div>
             </div>
         @endforeach
     </div>
+    <br>
+    {{ $genres->links() }}
 </div>

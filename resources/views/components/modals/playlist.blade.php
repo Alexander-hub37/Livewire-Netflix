@@ -7,7 +7,7 @@
                Create Playlist
            </h3>
            <button type="button" wire:click="closeModal">
-                @include('components.icons.close-dark')
+                <x-icons.close-dark />
            </button>
        </div>
 

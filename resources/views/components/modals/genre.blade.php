@@ -6,7 +6,7 @@
            <h5 class="text-lg font-semibold text-gray-900 ">
                {{ $isEditing ? 'Edit Genre' : 'Create Genre' }}
            </h5>
-           <button type="button" wire:click="$set('showModal', false)">
+           <button type="button" wire:click="closeModal">
                 @include('components.icons.close')
            </button>
         </div>
@@ -22,7 +22,7 @@
             
             <div class="flex justify-end gap-4">
                <button type="submit" class="button-primary">{{ $isEditing ? 'Update' : 'Create' }}</button>          
-               <button type="button" wire:click="$set('showModal', false)" class="button-secondary">Cancel</button>
+               <button type="button" wire:click="closeModal" class="button-secondary">Cancel</button>
            </div>
         </form>
         

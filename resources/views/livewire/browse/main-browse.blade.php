@@ -6,7 +6,7 @@
         <div class="relative flex flex-col justify-end h-full p-6 text-left">
             <div class="mb-4">
                 <h2 class="text-2xl uppercase font-bold">{{ $latestMovie->title }}</h2>
-                <p class="mt-4 text-base md:text-2xl font-bold">{{ $latestMovie->description }}</p>
+                <p class="mt-4 text-base md:text-2xl font-bold">{!! $latestMovie->description !!}</p>
             </div>
             <div class="flex space-x-4">
                 <button class="px-6 py-3 text-lg font-semibold text-black bg-white rounded-md">Play</button>
@@ -29,7 +29,7 @@
               <div class="container-info group-hover:opacity-100">
                 <div class="p-4 space-y-2 pb-6">
                     <div class="font-bold text-sm md:text-xl">{{ $movie->title }}</div>
-                    <div class="opacity-60 text-sm ">{{ $movie->description }}</div>
+                    <div class="opacity-60 text-sm ">{!! $movie->description !!}</div>
                 </div>
               </div>
                 <img class="max-w-full rounded-lg" src="{{ $movie->image ? asset('storage/' . $movie->image) : '' }}" alt="{{ $movie->title }}" />
@@ -41,7 +41,7 @@
       </main>
     </div>
 
-    @livewire('browse.top-rated-movies')
+    <livewire:browse.top-rated-movies />
 
   </div>
 </div>

@@ -7,14 +7,14 @@ use App\Models\Movie;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
-
+use Illuminate\Support\Facades\Cache;
+use Livewire\WithPagination;
 
 class Movies extends Component
 {
+    use WithPagination;
     use WithFileUploads;
 
-    public $movies;
-    public $genres;
     public $title;
     public $description;
     public $image;
@@ -30,11 +30,6 @@ class Movies extends Component
         'selectedGenres' => 'required|array'
     ];
 
-    public function mount()
-    {
-        $this->genres = Genre::all();
-        $this->movies = Movie::all();
-    }
 
     public function create()
     {
@@ -51,7 +46,6 @@ class Movies extends Component
         $movie->genres()->sync($this->selectedGenres);
 
         $this->resetForm();
-        $this->movies = Movie::all();
         $this->showModal = false;
         session()->flash('message', 'Movie created successfully! ');
         session()->flash('message_type', 'success');
@@ -68,6 +62,7 @@ class Movies extends Component
         $this->description = $movie->description;
         $this->selectedGenres = $movie->genres->pluck('id')->toArray();
         $this->showModal = true;
+        $this->dispatch('show-tinymce');
     }
 
     public function update()
@@ -94,7 +89,6 @@ class Movies extends Component
         $movie->genres()->sync($this->selectedGenres);
 
         $this->resetForm();
-        $this->movies = Movie::all();
         $this->showModal = false;
 
         session()->flash('message', 'Movie updated successfully! ');
@@ -109,7 +103,6 @@ class Movies extends Component
             Storage::disk('public')->delete($movie->image);
         }
         $movie->delete();
-        $this->movies = Movie::all();
         session()->flash('message', 'Movie deleted successfully! ');
         session()->flash('message_type', 'success');
     }
@@ -118,6 +111,14 @@ class Movies extends Component
     {
         $this->resetForm();
         $this->showModal = true;
+        $this->dispatch('show-tinymce');
+    }
+
+    public function closeModal()
+    {
+        $this->resetForm();
+        $this->showModal = false;
+        $this->dispatch('hide-tinymce');
     }
 
     public function resetForm()
@@ -129,10 +130,17 @@ class Movies extends Component
         $this->movieId = null;
         $this->isEditing = false;
         $this->showModal = false;
+        $this->dispatch('hide-tinymce');
     }
 
     public function render()
     {
-        return view('livewire.movies.movies');
+        $genres = Genre::all();
+        $movies = Movie::paginate(5);
+
+        return view('livewire.movies.movies', [
+            'genres' => $genres,
+            'movies' => $movies,
+        ]);
     }
 }
