@@ -26,6 +26,9 @@ import 'tinymce/plugins/table';
 function initializeTinyMCE() {
     tinymce.init({
         selector: '#description',
+        formats: {
+            bold: { inline: 'span', styles: { 'color': 'red','font-weight': 'bold'} }
+          },
         plugins: 'advlist code emoticons link lists table',
         toolbar: 'bold italic | bullist numlist | link emoticons',
         skin_url: 'default',
@@ -34,6 +37,7 @@ function initializeTinyMCE() {
         setup: (editor) => {
             editor.on('init', () => {
                 editor.getContainer().style.height = '10em'; 
+                editor.getDoc().body.style.fontFamily = 'Arial, sans-serif';
             });
             editor.on('change', () => {
                 editor.save();

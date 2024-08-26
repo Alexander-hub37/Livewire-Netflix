@@ -22,20 +22,17 @@ class AddToPlaylist extends Component
         $playlist = Playlist::find($this->selectedPlaylist);
 
         if (!$playlist) {
-            session()->flash('message', 'Please select a playlist.');
-            session()->flash('message_type', 'error');
+            session()->flash('error', 'Please select a playlist.');
             return;
         }
 
         if ($playlist->movies->contains($this->movieId)) {
-            session()->flash('message', 'This movie is already in the selected playlist.');
-            session()->flash('message_type', 'error');
+            session()->flash('error', 'This movie is already in the selected playlist.');
             return;
         }
 
         $playlist->movies()->attach($this->movieId);
-        session()->flash('message', 'Movie added to playlist!');
-        session()->flash('message_type', 'success');
+        session()->flash('success', 'Movie added to playlist!');
 
     }
     

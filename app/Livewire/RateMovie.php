@@ -28,15 +28,14 @@ class RateMovie extends Component
 
         $userId = Auth::id();
 
-        $Qualification = Qualification::where('movie_id', $this->movieId)->where('user_id', $userId)->first();
+        $qualification = Qualification::where([ ['movie_id', $this->movieId], ['user_id', $userId] ])->first();
 
-        if ($Qualification) {
+        if ($qualification) {
 
-            $Qualification->update([
+            $qualification->update([
                 'value' => $this->rating,
             ]);
-            session()->flash('message', 'Movie rating updated successfully!');
-            session()->flash('message_type', 'success');
+            session()->flash('success', 'Movie rating updated successfully!');
 
         } else {
             
@@ -46,8 +45,7 @@ class RateMovie extends Component
                 'value' => $this->rating,
             ]);
 
-            session()->flash('message', 'Movie rated successfully!');
-            session()->flash('message_type', 'success');
+            session()->flash('success', 'Movie rated successfully!');
         }
     }
 
@@ -55,15 +53,10 @@ class RateMovie extends Component
     public function loadCurrentRating()
     {
         $userId = Auth::id();
-        $Qualification = Qualification::where('movie_id', $this->movieId)->where('user_id', $userId)->first();
-
-        if ($Qualification) {
-            $this->currentRating = $Qualification->value;
-            $this->rating = $this->currentRating; 
-        } else {
-            $this->currentRating = null; 
-            $this->rating = null; 
-        }
+        $qualification = Qualification::where([ ['movie_id', $this->movieId], ['user_id', $userId] ])->first();
+        
+        $this->rating  = $qualification ? $qualification->value : null;
+       
     }
 
     public function render()

@@ -34,8 +34,7 @@ class Register extends Component
         event(new Registered($user));
         Auth::login($user);
 
-        session()->flash('message', 'Registration successful! Please check your email for verification.');
-        session()->flash('message_type', 'success');
+        session()->flash('success', 'Registration successful! Please check your email for verification.');
 
         return redirect()->route('browse');
     }

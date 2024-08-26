@@ -35,7 +35,7 @@ class Movies extends Component
     {
         $this->validate();
 
-        $imagePath = $this->image ? $this->image->store('images','public') : null;
+        $imagePath = $this->image?->store('images','public');
 
         $movie = Movie::create([
             'title' => $this->title,
@@ -47,17 +47,14 @@ class Movies extends Component
 
         $this->resetForm();
         $this->showModal = false;
-        session()->flash('message', 'Movie created successfully! ');
-        session()->flash('message_type', 'success');
-
+        session()->flash('success', 'Movie created successfully! ');
     }
 
-    public function edit($id)
+    public function edit(Movie $movie)
     {
         $this->resetForm();
         $this->isEditing = true;
-        $this->movieId = $id;
-        $movie = Movie::find($id);
+        $this->movieId = $movie->id;
         $this->title = $movie->title;
         $this->description = $movie->description;
         $this->selectedGenres = $movie->genres->pluck('id')->toArray();
@@ -91,20 +88,18 @@ class Movies extends Component
         $this->resetForm();
         $this->showModal = false;
 
-        session()->flash('message', 'Movie updated successfully! ');
-        session()->flash('message_type', 'success');
+        session()->flash('success', 'Movie updated successfully! ');
 
     }
 
-    public function delete($id)
+    public function delete(Movie $movie)
     {
-        $movie = Movie::findOrFail($id);
         if($movie->image) {
             Storage::disk('public')->delete($movie->image);
         }
         $movie->delete();
-        session()->flash('message', 'Movie deleted successfully! ');
-        session()->flash('message_type', 'success');
+
+        session()->flash('success', 'Movie deleted successfully! ');
     }
 
     public function showCreateModal()

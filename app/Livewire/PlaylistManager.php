@@ -10,18 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PlaylistManager extends Component
 {
-    public $playlists;
+
     public $newPlaylistName;
     public $showModal = false;
 
     protected $rules = [
         'newPlaylistName' => 'required|string|min:3',
     ];
-
-    public function mount()
-    {
-        $this->playlists = auth()->user()->playlists()->with('movies')->get();
-    }
 
     public function createPlaylist()
     {
@@ -31,48 +26,36 @@ class PlaylistManager extends Component
             'name' => $this->newPlaylistName,
         ]);
 
-
-        $this->playlists = auth()->user()->playlists()->with('movies')->get();
         $this->newPlaylistName = '';
         $this->showModal = false;
-        session()->flash('message', 'Playlist created successfully!');
-        session()->flash('message_type', 'success');
+        session()->flash('success', 'Playlist created successfully!');
     }
 
 
-    public function removeFromPlaylist($movieId, $playlistId)
+    public function removeFromPlaylist(Movie $movie, Playlist $playlist)
     {
-        $playlist = Playlist::find($playlistId);
 
-        if (!$playlist) {
-            session()->flash('message', 'Playlist not found.');
-            session()->flash('message_type', 'error');
+        if (!$playlist->exists) {
+            session()->flash('error', 'Playlist not found.');
             return;
         }
 
-        $playlist->movies()->detach($movieId);
-        session()->flash('message', 'Movie removed from playlist.');
-        session()->flash('message_type', 'success');
+        $playlist->movies()->detach($movie);
+        session()->flash('success', 'Movie removed from playlist.');
 
-
-        $this->playlists = auth()->user()->playlists()->with('movies')->get();
     }
 
-    public function deletePlaylist($playlistId)
+    public function deletePlaylist(Playlist $playlist)
     {
-        $playlist = Playlist::find($playlistId);
 
-        if (!$playlist) {
-            session()->flash('message', 'Playlist not found.');
-            session()->flash('message_type', 'error');
+        if (!$playlist->exists) {
+            session()->flash('error', 'Playlist not found.');
             return;
         }
 
         $playlist->delete();
-        session()->flash('message', 'Playlist deleted successfully! ');
-        session()->flash('message_type', 'success');
+        session()->flash('success', 'Playlist deleted successfully! ');
 
-        $this->playlists = auth()->user()->playlists()->with('movies')->get();
     }
 
     public function openModal()
@@ -87,6 +70,11 @@ class PlaylistManager extends Component
 
     public function render()
     {
-        return view('livewire.playlist-manager')->layout('components.layouts.browse');
+        $playlists = auth()->user()->playlists()->with('movies')->get();
+
+        return view('livewire.playlist-manager', [
+            'playlists' => $playlists,
+            ])
+            ->layout('components.layouts.browse');
     }
 }
