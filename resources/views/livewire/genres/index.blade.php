@@ -11,7 +11,7 @@
             <div class="flex flex-col items-center pb-8 border border-gray-200 rounded-lg">
                 <h5>{{ $genre->name }}</h5>
                     <div class="flex mt-4">
-                        <button wire:click="edit({{ $genre->id }})">
+                        <button wire:click="edit({{ $genre }})">
                             <x-icons.edit />
                         </button>
                         <button wire:click="delete({{ $genre->id }})">

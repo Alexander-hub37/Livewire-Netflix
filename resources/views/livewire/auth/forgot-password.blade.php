@@ -1,6 +1,6 @@
 <div>
     <form wire:submit.prevent="sendResetLink" class="space-y-6">
-        <h5>Restablecer contraseña</h5>
+        <h5>Reset password</h5>
         <div>
             <label for="email">Your email</label>
             <input wire:model="email" type="email" id="email" class="input-app @error('email') error @else no-error @enderror" placeholder="Email">

@@ -4,7 +4,6 @@ namespace App\Livewire\Genres;
 
 use Livewire\Component;
 use App\Models\Genre;
-use Illuminate\Support\Facades\Cache;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -26,17 +25,14 @@ class Index extends Component
         Genre::create(['name' => $this->name]);
         $this->resetForm();
         $this->showModal = false;
-        
-        session()->flash('message', 'Genre created successfully!');
-        session()->flash('message_type', 'success');
+        session()->flash('success', 'Genre created successfully!');
     }
 
-    public function edit($id)
+    public function edit(Genre $genre)
     {
         $this->resetForm();
         $this->isEditing = true;
-        $this->genreId = $id;
-        $genre = Genre::find($id);
+        $this->genreId = $genre->id;
         $this->name = $genre->name;
         $this->showModal = true;
     }
@@ -48,17 +44,14 @@ class Index extends Component
         $genre->update(['name' => $this->name]);
         $this->resetForm();
         $this->showModal = false;
-        
-        session()->flash('message', 'Genre updated successfully!');
-        session()->flash('message_type', 'success');
+        session()->flash('success', 'Genre updated successfully!');
+
     }
 
-    public function delete($id)
+    public function delete(Genre $genre)
     {
-        Genre::findOrFail($id)->delete();
-
-        session()->flash('message', 'Genre deleted successfully!');
-        session()->flash('message_type', 'success');
+        $genre->delete();
+        session()->flash('success', 'Genre deleted successfully!');
     }
 
     public function showCreateModal()

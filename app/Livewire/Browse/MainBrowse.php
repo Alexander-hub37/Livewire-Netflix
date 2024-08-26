@@ -26,9 +26,9 @@ class MainBrowse extends Component
         }
     }
 
-    public function selectMovie($movieId)
+    public function selectMovie(Movie $movie)
     {
-        $this->selectedMovie = Movie::find($movieId);
+        $this->selectedMovie = $movie;
     }
 
     public function closeModal()

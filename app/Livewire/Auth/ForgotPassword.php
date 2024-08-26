@@ -23,11 +23,11 @@ class ForgotPassword extends Component
         );
 
         if ($status === Password::RESET_LINK_SENT) {
-            session()->flash('message', __($status));
-            session()->flash('message_type', 'success');
+            session()->flash('success', __($status));
+            
         } else {
-            session()->flash('message', __($status));
-            session()->flash('message_type', 'error');
+            session()->flash('error', __($status));
+           
         }
     }
     

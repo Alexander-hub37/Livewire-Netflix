@@ -43,12 +43,12 @@ class ResetPassword extends Component
         );
 
         if ($status === Password::PASSWORD_RESET) {
-            session()->flash('message', __($status));
-            session()->flash('message_type', 'success');
+            session()->flash('success', __($status));
+            
             return redirect()->route('login');
         } else {
-            session()->flash('message', __($status));
-            session()->flash('message_type', 'error');
+            session()->flash('error', __($status));
+           
         }
     }
     

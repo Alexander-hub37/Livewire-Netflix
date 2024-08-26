@@ -13,7 +13,7 @@
             <div class="mb-6">
                 <div class="flex items-center justify-between border-b">
                     <h2 class="text-xl font-semibold mb-3">{{ $playlist->name }}</h2>
-                    <button wire:click="deletePlaylist({{ $playlist->id }})" >
+                    <button wire:click="deletePlaylist({{ $playlist }})" >
                         <x-icons.close />
                     </button>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
                     @foreach($playlist->movies as $movie)
                     <div class="container-image group">                        
-                        <button wire:click="removeFromPlaylist({{ $movie->id }}, {{ $playlist->id }})" class="absolute top-2 right-2 p-2 bg-white rounded-full">
+                        <button wire:click="removeFromPlaylist({{ $movie }}, {{ $playlist }})" class="absolute top-2 right-2 p-2 bg-white rounded-full">
                             <x-icons.close-dark />
                         </button>
                         <div class="container-info group-hover:opacity-100">

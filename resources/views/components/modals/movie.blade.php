@@ -1,4 +1,4 @@
- @if($showModal)
+@if($showModal)
 <div class="container-modal">
     <div class="card-modal">
 
