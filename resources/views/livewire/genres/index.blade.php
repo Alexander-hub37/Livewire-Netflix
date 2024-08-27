@@ -14,7 +14,7 @@
                         <button wire:click="edit({{ $genre }})">
                             <x-icons.edit />
                         </button>
-                        <button wire:click="delete({{ $genre->id }})">
+                        <button wire:click="delete({{ $genre }})">
                             <x-icons.delete />
                         </button>
                     </div>

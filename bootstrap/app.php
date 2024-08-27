@@ -50,6 +50,12 @@ return Application::configure(basePath: dirname(__DIR__))
             }
         });
 
+        $exceptions->render(function (Illuminate\Validation\ValidationException $exception) {
+            return response()->json([
+                'errors' => $exception->errors(),
+            ], 422);
+        });
+
         return $exceptions;
   
     })->create();

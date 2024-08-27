@@ -10,55 +10,37 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Validation\ValidationException;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|confirmed|min:8',
-            ]);
+        $validatedData = $request->validated();
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
-            $user = User::create([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-            ]);
+        $user = User::create($validatedData);
 
-            $user->assignRole('User');
+        $user->assignRole('User');
 
-            return response()->json([
-                'message' => 'Registration successful! Please check your email for verification.',
-                'user' => $user,
-            ], 201);
+        return response()->json([
+            'message' => 'Registration successful! Please check your email for verification.',
+            'user' => $user,
+        ], 201);
 
-        } catch (ValidationException $e) {
-            
-            return response()->json([
-                'errors' => $e->errors(),
-            ], 422);
-        }
     }
 
-    public function login(Request $request)
-{
-    try {
+    public function login(LoginRequest $request)
+    {
+        $validatedData = $request->validated();
 
-        $validatedData = $request->validate([
-            'email' => 'required|string|email|exists:users,email',
-            'password' => 'required|string',
-        ]);
-
-
-        if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']])) {
+        if (Auth::attempt($validatedData)) {
             $user = Auth::user();
-
             if ($user->hasVerifiedEmail()) {
+                
                 $token = $user->createToken('Personal Access Token')->plainTextToken;
-
                 return response()->json([
                     'message' => 'Login successful',
                     'data' => [
@@ -69,7 +51,6 @@ class AuthController extends Controller
             } else {
 
                 Auth::logout();
-
                 return response()->json([
                     'message' => 'Please verify your email before logging in.',
                 ], 403);
@@ -80,12 +61,7 @@ class AuthController extends Controller
             'message' => 'Invalid credentials',
         ], 401);
 
-    } catch (ValidationException $e) {
-        return response()->json([
-            'errors' => $e->errors(),
-        ], 422);
     } 
-}
 
     public function logout(Request $request)
     {
