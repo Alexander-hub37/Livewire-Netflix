@@ -11,7 +11,7 @@
             </button>
         </div>
 
-         <form wire:submit.prevent="{{ $isEditing ? 'update' : 'create' }}" class="p-4">
+         <form wire:submit="{{ $isEditing ? 'update' : 'create' }}" class="p-4">
             <div class="mb-4">
                 <label>Title</label>
                 <input type="text" wire:model="title" placeholder="Enter movie title" class="input-app @error('title') error @else no-error @enderror">
@@ -30,7 +30,7 @@
 
              <div class="mb-4">
                 <label>Upload image</label>
-                <input type="file" wire:model="image" class="input-file">
+                <input type="file" wire:model="image" class="input-file" accept="image/png, image/jpg, image/jpeg">
                 @error('image') 
                     <p class="error">{{ $message }}</p> 
                 @enderror

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Genre;
-use Illuminate\Validation\ValidationException;
 use App\Http\Requests\GenreRequest;
 
 class GenreController extends Controller

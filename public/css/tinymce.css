@@ -1,0 +1,11 @@
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 14px;
+    color: rgb(17, 24, 39);
+}
+
+strong {
+    color: rgb(200, 30, 30);
+    font-weight: bold;
+}
+

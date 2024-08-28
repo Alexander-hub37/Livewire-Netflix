@@ -25,5 +25,14 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'search.movies'])->syncRoles([$roleAdmin, $roleUser]);
         Permission::create(['name' => 'playlists'])->syncRoles([$roleAdmin, $roleUser]);
 
+        //api permissions
+        Permission::create(['name' => 'getPlaylists'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'storePlaylist'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'addMovieToPlaylist'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'removeMovieFromPlaylist'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'deletePlaylist'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'rateMovie'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'getMovies'])->syncRoles([$roleAdmin, $roleUser]);
+
     }
 }
