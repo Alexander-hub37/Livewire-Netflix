@@ -17,6 +17,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('genres', GenreController::class);
         Route::apiResource('movies', MovieController::class);
         Route::get('users', [UserController::class, 'index'])->name('getUsers');
+        Route::get('roles', [UserController::class, 'getRoles']);
+        Route::post('users/{user}/assign-role', [UserController::class, 'assignRole']);
        
     });
     Route::group(['middleware' => ['role:Admin|User']], function () { 
