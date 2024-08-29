@@ -54,6 +54,12 @@
                     @endcan
                 </li>
                 <li>
+                    @can('users')
+                        <a href="{{ route('users') }}"
+                            class="nav-link {{ request()->routeIs('users') ? 'active' : '' }}">Users</a>
+                    @endcan
+                </li>
+                <li>
                     @can('browse')
                         <a href="{{ route('browse') }}"
                             class="nav-link {{ request()->routeIs('browse') ? 'active' : '' }}">Netflix</a>

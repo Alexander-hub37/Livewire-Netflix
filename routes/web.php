@@ -13,7 +13,7 @@ use App\Livewire\Browse\MainBrowse;
 use App\Livewire\PlaylistManager;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\ResetPassword;
-
+use App\Livewire\Users\UsersIndex;
 
 Route::middleware('guest')->group(function (){
     Route::get('/', function () {
@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::group(['middleware' => ['role:Admin']], function () { 
         Route::get('/genres', Index::class)->name('genres');
         Route::get('/movies', Movies::class)->name('movies');
+        Route::get('/users', UsersIndex::class)->name('users');
     });
 
     Route::group(['middleware' => ['role:Admin|User']], function () { 

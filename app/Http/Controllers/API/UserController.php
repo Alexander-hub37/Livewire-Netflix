@@ -35,5 +35,4 @@ class UserController extends Controller
         return response()->json(['message' => 'Roles assigned successfully'], 200);
     }
 
-
 }
