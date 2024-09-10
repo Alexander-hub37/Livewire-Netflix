@@ -14,6 +14,7 @@ use App\Livewire\PlaylistManager;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Users\UsersIndex;
+use App\Http\Middleware\RedirectIfVerified;
 
 Route::middleware('guest')->group(function (){
     Route::get('/', function () {
@@ -43,7 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/email/verify', function () {
     return view('livewire.auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+})->middleware(['auth', RedirectIfVerified::class])->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();

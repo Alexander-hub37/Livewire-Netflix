@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Movie;
 use App\Http\Requests\MovieRequest;
+use App\Http\Resources\MovieResource;
 
 
 class MovieController extends Controller
@@ -14,7 +15,7 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::with('genres')->get();
-        return response()->json($movies);
+        return $movies->count() > 0 ? MovieResource::collection($movies) : response()->json(['message' => 'No movie found'], 404);
     }
 
     public function store(MovieRequest $request)
@@ -33,7 +34,7 @@ class MovieController extends Controller
 
         return response()->json([
             'message' => 'Movie created successfully!',
-            'movie' => $movie->load('genres')
+            'movie' => new MovieResource($movie)
         ], 201);
     }
 
@@ -42,8 +43,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        $movie->load('genres');
-        return response()->json($movie);
+        return new MovieResource($movie);
     }
 
     /**
@@ -72,7 +72,7 @@ class MovieController extends Controller
 
         return response()->json([
             'message' => 'Movie updated successfully!',
-            'movie' => $movie->load('genres')
+            'movie' => new MovieResource($movie)
         ]);
     }
 

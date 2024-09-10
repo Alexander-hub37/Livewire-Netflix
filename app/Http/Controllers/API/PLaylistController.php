@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,10 +8,8 @@ use App\Models\Playlist;
 use App\Models\Movie;
 use Illuminate\Validation\ValidationException;
 
-
-class PLaylistController extends Controller
+class PlaylistController extends Controller
 {
-    
     public function index()
     {
         $playlists = auth()->user()->playlists()->with('movies')->get();
