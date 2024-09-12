@@ -1,6 +1,4 @@
-<div>
-    @include('livewire.message')
-    
+<div>    
     <form wire:submit.prevent="addToPlaylist">
         <div class="mb-4">
             <label for="playlist" class="text-white">Select Playlist</label>
@@ -15,4 +13,6 @@
             Add to Playlist
         </button>
     </form>
+    <br>
+    @include('livewire.message')
 </div>

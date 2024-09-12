@@ -1,5 +1,5 @@
 <div>
-    @include('livewire.message')
+    
     <form wire:submit.prevent="rateMovie">
         <div class="mb-4">
             <label for="rating" class="text-white">Rating</label>
@@ -15,4 +15,6 @@
             Submit Rating
         </button>
     </form>
+    <br>
+    @include('livewire.message')
 </div>

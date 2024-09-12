@@ -14,8 +14,8 @@
         <form wire:submit.prevent="{{ $isEditing ? 'update' : 'create' }}" class="p-4">
             <div class="mb-4">
                 <label>Name</label>
-                <input type="text" wire:model="name" placeholder="Enter genre name" class="input-app @error('name') error @else no-error @enderror">
-                @error('name') 
+                <input type="text" wire:model="form.name" placeholder="Enter genre name" class="input-app @error('form.name') error @else no-error @enderror">
+                @error('form.name') 
                     <p class="error">{{ $message }}</p>
                 @enderror
             </div>

@@ -1,35 +1,49 @@
 @if ($selectedMovie)
     <div class="fixed inset-0 flex items-center justify-center z-50 p-4 bg-gray-600 bg-opacity-5">
-        <div class="relative w-3/4 h-5/6 bg-white rounded-lg shadow-lg overflow-hidden">
-            <img src="{{ $selectedMovie->image ? asset('storage/' . $selectedMovie->image) : '' }}" alt="{{ $selectedMovie->title }}" class="absolute w-full h-full object-cover rounded-lg">
-            
-            <div class="absolute top-4 right-4 z-20 duration-300 hover:scale-110">
-                <button type="button" wire:click="closeModal" class="bg-white bg-opacity-75 rounded-full p-2">
-                    <x-icons.close-dark />
-                </button>
-            </div>
+        <div class="relative w-full max-w-4xl max-h-full">
 
-            <div class="absolute z-10 h-full flex flex-col">
-                
-                <div class="flex flex-col flex-grow justify-end p-6 text-left text-white">
-                    <h2 class="text-2xl font-bold mb-4">{{ $selectedMovie->title }}</h2>
-                    <p class="text-lg md:text-xl lg:text-2xl">{!! $selectedMovie->description !!}</p>
-                    
-                  
-                    <div class="flex space-x-4 mt-4">
-                        <button class="px-3 py-1.5 md:px-6 md:py-3 text-sm md:text-lg font-semibold text-black bg-white rounded-md">Play</button>
-                        <button class="px-3 py-1.5 md:px-6 md:py-3 text-sm md:text-lg font-semibold bg-gray-700 bg-opacity-70 rounded-md">More information</button>
+            <div class="relative bg-neutral-900 rounded-lg shadow">
+
+                <div class="relative">
+                    <img class="w-full h-110 object-cover rounded-t-lg"
+                        src="{{ $selectedMovie->image ? asset('storage/' . $selectedMovie->image) : '' }}"
+                        alt="{{ $selectedMovie->title }}">
+
+                    <div
+                        class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent rounded-t-lg">
+                    </div>
+
+                    <div class="absolute top-4 right-4 z-20 duration-300 hover:scale-110">
+                        <button type="button" wire:click="closeModal" class="bg-neutral-900 rounded-full p-2">
+                            <x-icons.close />
+                        </button>
                     </div>
                 </div>
-                <div class="flex flex-wrap md:flex-nowrap bg-black">
+
+                <div class="px-6 py-4">
+                    <div class="flex space-x-4 items-center justify-between flex-col md:flex-row">
+                        <div>
+                            <h3 class="mb-4 text-2xl font-bold text-white">{{ $selectedMovie->title }}</h3>
+                            <div class="flex space-x-4 items-center">
+                                <span class="text-sm text-gray-300">2013</span>
+                                <span class="text-sm text-gray-300">76 episodios</span>
+                                <span class="text-sm text-gray-300">13+</span>
+                            </div>
+                            <p class="mt-4 text-gray-200">{!! $selectedMovie->description !!}</p>
+                            <div class="mt-6">
+                                <button class="px-6 py-2 text-black bg-white rounded-md mr-2">
+                                    Play
+                                </button>
+                            </div>
+                        </div>
                 
-                    <div class="w-full md:w-1/2 order-1 md:order-1 p-4">
-                        <livewire:add-to-playlist :movieId="$selectedMovie->id" />
-                    </div>
-                    <div class="w-full md:w-1/2 order-2 md:order-2 p-4">
-                        <livewire:rate-movie :movieId="$selectedMovie->id" />
+                        <div class="mt-6 md:mt-0 flex space-x-4">
+                            <livewire:add-to-playlist :movieId="$selectedMovie->id" />
+                            <livewire:rate-movie :movieId="$selectedMovie->id" />
+                        </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
