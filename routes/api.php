@@ -16,19 +16,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['middleware' => ['role:Admin']], function () { 
         Route::apiResource('genres', GenreController::class);
         Route::apiResource('movies', MovieController::class);
-        Route::get('users', [UserController::class, 'index'])->name('getUsers');
-        Route::get('roles', [UserController::class, 'getRoles']);
-        Route::post('users/{user}/assign-role', [UserController::class, 'assignRole']);
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('roles', [UserController::class, 'getRoles'])->name('roles.index');
+        Route::post('users/{user}/assign-role', [UserController::class, 'users.assign_role']);
        
     });
     Route::group(['middleware' => ['role:Admin|User']], function () { 
-        Route::get('playlists', [PlaylistController::class, 'index'])->name('getPlaylists');
-        Route::post('playlists', [PlaylistController::class, 'store'])->name('storePlaylist');
-        Route::post('playlists/add-movie', [PlaylistController::class, 'addToPlaylist'])->name('addMovieToPlaylist');
-        Route::post('playlists/remove-movie', [PlaylistController::class, 'removeFromPlaylist'])->name('removeMovieFromPlaylist');
-        Route::delete('playlists/{id}', [PlaylistController::class, 'destroy'])->name('deletePlaylist');
-        Route::post('rate-movie', [RatemovieController::class, 'rateMovie'])->name('rateMovie');
-        Route::get('movies', [MovieController::class, 'index'])->name('getMovies');
+        Route::get('playlists', [PlaylistController::class, 'index'])->name('playlists.index');
+        Route::post('playlists', [PlaylistController::class, 'store'])->name('playlists.store');
+        Route::post('playlists/add-movie', [PlaylistController::class, 'addToPlaylist'])->name('playlists.add_movie');
+        Route::post('playlists/remove-movie', [PlaylistController::class, 'removeFromPlaylist'])->name('playlists.remove_movie');
+        Route::delete('playlists/{id}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
+        Route::post('rate-movie', [RatemovieController::class, 'rateMovie'])->name('movies.rate');
+        Route::get('movies', [MovieController::class, 'index'])->name('movies.index');
 
     });
     Route::post('logout', [AuthController::class, 'logout']);  

@@ -1,11 +1,11 @@
 <x-layouts.template>
     <h5>Verify your email address</h5>
     <div class="container mx-auto">
-        <img src="https://img.icons8.com/?size=100&id=LPcVDft9Isqt&format=png&color=000000" class="mx-auto" />
+        <img src="{{ asset('assets/email.png')}}" class="mx-auto" />
     </div>
     <p class="mb-5 text-base text-gray-500 sm:text-sm">Check your email & clic the link to activate
         your account.</p>
-    <div class="items-center justify-center flex justify-between">
+    <div class="items-center justify-center flex">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
             <button type="submit">

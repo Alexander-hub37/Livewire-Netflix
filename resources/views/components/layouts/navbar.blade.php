@@ -1,7 +1,7 @@
 <nav class="bg-black">
     <div class="container flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="" class="flex items-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" class="h-6 sm:h-9"
+            <img src="{{ asset('assets/Netflix_logo.svg')}}" class="h-6 sm:h-9"
                 alt="Netflix Logo">
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -11,7 +11,7 @@
                 data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full"
-                    src="https://img.icons8.com/?size=100&id=85yg4VIbT8Gd&format=png&color=000000" alt="user photo">
+                    src="{{ asset('assets/user.png')}}" alt="user photo">
             </button>
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown">

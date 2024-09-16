@@ -10,7 +10,7 @@
                             {{$movie->qualifications_avg_value}}
                         </div>  
                 </div>
-                <img  class="max-w-full rounded-lg" src="{{ $movie->image ? asset('storage/' . $movie->image) : '' }}" alt="{{ $movie->title }}" />
+                <img  class="max-w-full rounded-lg" src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}"/>
             </div>
             @endforeach
         </div>

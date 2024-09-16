@@ -1,9 +1,7 @@
 <x-layouts.browse>
     <div class="relative w-full h-screen">
 
-        <div
-            class="absolute inset-0 bg-cover bg-center bg-[url('https://filasiete.com/wp-content/uploads/2021/10/labatallaolvidada.jpg')]">
-        </div>
+        <div class="bg-main page-403"></div>
 
         <div class="absolute inset-0 bg-black bg-opacity-10"></div>
 

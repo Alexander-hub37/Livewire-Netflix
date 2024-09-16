@@ -1,9 +1,7 @@
 <x-layouts.browse>
     <div class="relative w-full h-screen top-0">
 
-        <div
-            class="absolute inset-0 bg-cover bg-center bg-[url('https://assets.nflxext.com/ffe/siteui/pages/errors/bg-lost-in-space.png')]">
-        </div>
+        <div class="bg-main page-404"></div>
 
         <div class="absolute inset-0 bg-black bg-opacity-10"></div>
 

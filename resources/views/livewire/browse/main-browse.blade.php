@@ -1,7 +1,7 @@
 <div>
 @if ($latestMovie)
   <div class="relative h-[555px] w-full">
-    <div class="absolute inset-0 bg-cover bg-center md:bg-[url('https://i.blogs.es/2a9439/avengers_endgame_analisis_problema_marvel/1366_2000.jpeg')] bg-[url('https://imageio.forbes.com/blogs-images/markhughes/files/2019/04/AVENGERS-ENDGAME-poster-DOLBY-CINEMA.jpg?height=1039&width=711&fit=bounds')]">
+    <div class="bg-main large small">
       <div class="absolute inset-0 bg-black bg-opacity-25"></div>
         <div class="relative flex flex-col justify-end h-full p-6 text-left">
             <div class="mb-4">
@@ -33,7 +33,7 @@
                     <div class="opacity-60 text-sm ">{!! $movie->description !!}</div>
                 </div>
               </div>
-                <img class="max-w-full rounded-lg" src="{{ $movie->image ? asset('storage/' . $movie->image) : '' }}" alt="{{ $movie->title }}" />
+                <img class="max-w-full rounded-lg" src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}"/>
             </div>
           @endforeach
           @include('components.modals.mainBrowse')

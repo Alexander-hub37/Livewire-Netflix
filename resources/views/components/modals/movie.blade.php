@@ -14,24 +14,24 @@
          <form wire:submit="{{ $isEditing ? 'update' : 'create' }}" class="p-4">
             <div class="mb-4">
                 <label>Title</label>
-                <input type="text" wire:model="title" placeholder="Enter movie title" class="input-app @error('title') error @else no-error @enderror">
-                @error('title')
+                <input type="text" wire:model="form.title" placeholder="Enter movie title" class="input-app @error('form.title') error @else no-error @enderror">
+                @error('form.title')
                     <p class="error">{{ $message }}</p>
                 @enderror
              </div>
              
              <div wire:ignore class="mb-4">
                 <label>Description</label>
-                <textarea id="description" wire:model.defer="description" placeholder="Enter movie description" class="input-app @error('title') error @else no-error @enderror"></textarea>
-                @error('description')
+                <textarea id="description" wire:model.defer="form.description" placeholder="Enter movie description" class="input-app @error('form.description') error @else no-error @enderror"></textarea>
+                @error('form.description')
                     <p class="error">{{ $message }}</p>
                 @enderror
              </div>
 
              <div class="mb-4">
                 <label>Upload image</label>
-                <input type="file" wire:model="image" class="input-file" accept="image/png, image/jpg, image/jpeg">
-                @error('image') 
+                <input type="file" wire:model="form.image" class="input-file" accept="image/png, image/jpg, image/jpeg">
+                @error('form.image') 
                     <p class="error">{{ $message }}</p> 
                 @enderror
              </div>
@@ -41,7 +41,7 @@
                 <div class="flex flex-wrap gap-4">
                     @foreach ( $genres as $genre )
                         <label>
-                            <input class="bg-white border-gray-300 rounded focus:ring-blue-500" type="checkbox" wire:model="selectedGenres" value="{{$genre->id}}">
+                            <input class="bg-white border-gray-300 rounded focus:ring-blue-500" type="checkbox" wire:model="form.selectedGenres" value="{{$genre->id}}">
                             {{$genre->name}}
                         </label>
                     @endforeach

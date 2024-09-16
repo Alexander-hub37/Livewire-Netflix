@@ -32,7 +32,7 @@
                                 <div class="opacity-60 text-sm ">{!! $movie->description !!}</div>
                             </div>
                         </div>
-                        <img class="max-w-full rounded-lg" src="{{ $movie->image ? asset('storage/' . $movie->image) : ''}}" alt="{{ $movie->title }}">
+                        <img class="max-w-full rounded-lg" src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}">
                         
                     </div>
                     @endforeach

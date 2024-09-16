@@ -16,14 +16,10 @@ class MainBrowse extends Component
     {
         $this->latestMovie = Movie::latest()->first();
 
-        $genres = Genre::all();
-        $this->moviesByGenre = [];
-
-        foreach ($genres as $genre) {
-            $this->moviesByGenre[$genre->name] = Movie::whereHas('genres', function ($query) use ($genre) {
-                $query->where('genres.id', $genre->id);
-            })->orderBy('created_at', 'desc')->take(4)->get();
-        }
+        $this->moviesByGenre = Genre::with(['movies' => function ($query) {
+            $query->orderBy('movies.created_at', 'desc')->take(4);
+        }])->get()->pluck('movies', 'name');
+       
     }
 
     public function selectMovie(Movie $movie)

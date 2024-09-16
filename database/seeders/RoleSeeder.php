@@ -26,14 +26,14 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'search.movies'])->syncRoles([$roleAdmin, $roleUser]);
         Permission::create(['name' => 'playlists'])->syncRoles([$roleAdmin, $roleUser]);
 
-        //api permissions
-        Permission::create(['name' => 'getPlaylists'])->syncRoles([$roleAdmin, $roleUser]);
-        Permission::create(['name' => 'storePlaylist'])->syncRoles([$roleAdmin, $roleUser]);
-        Permission::create(['name' => 'addMovieToPlaylist'])->syncRoles([$roleAdmin, $roleUser]);
-        Permission::create(['name' => 'removeMovieFromPlaylist'])->syncRoles([$roleAdmin, $roleUser]);
-        Permission::create(['name' => 'deletePlaylist'])->syncRoles([$roleAdmin, $roleUser]);
-        Permission::create(['name' => 'rateMovie'])->syncRoles([$roleAdmin, $roleUser]);
-        Permission::create(['name' => 'getMovies'])->syncRoles([$roleAdmin, $roleUser]);
+        //API PERMISSIONS
+        Permission::create(['name' => 'playlists.index'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'playlists.store'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'playlists.add_movie'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'playlists.remove_movie'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'playlists.destroy'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'movies.rate'])->syncRoles([$roleAdmin, $roleUser]);
+        Permission::create(['name' => 'movies.indexs'])->syncRoles([$roleAdmin, $roleUser]);
 
     }
 }

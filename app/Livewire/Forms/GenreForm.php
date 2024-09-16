@@ -13,9 +13,11 @@ class GenreForm extends Form
 
     public $genreId = null;
 
+    public $genre = null;
+
     public function create()
     {
-        $this->validate();  
+        $this->validate();
         Genre::create($this->all());
         $this->resetForm();
     }
@@ -24,19 +26,21 @@ class GenreForm extends Form
     {
         $this->validate(); 
 
-        if ($this->genreId) {
-            $genre = Genre::find($this->genreId);
-            $genre->update($this->all());
+        if ($this->genre) {
+            $this->genre->update($this->all()); 
             $this->resetForm();
         }
     }
+
 
     public function fillFromModel(Genre $genre)
     {
         $this->fill([
             'name' => $genre->name,
-            'genreId' => $genre->id, 
+            'genreId' => $genre->id,
         ]);
+
+        $this->genre = $genre;
     }
 
     public function resetForm()
@@ -45,5 +49,7 @@ class GenreForm extends Form
             'name' => '',
             'genreId' => null,
         ]);
+
+        $this->genre = null;
     }
 }

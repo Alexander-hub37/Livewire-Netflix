@@ -15,8 +15,7 @@
                     <div class="opacity-60 text-sm ">{!! $movie->description !!}</div>
                   </div>
               </div>
-              <img class="max-w-full rounded-lg " src="{{ asset('storage/' . $movie->image) }}"
-                  alt="{{ $movie->title }}">
+              <img class="max-w-full rounded-lg " src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}">
             </div>
         @empty
             <P>No movies found.</P>

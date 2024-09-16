@@ -38,8 +38,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/playlists', PlaylistManager::class)->name('playlists');
     });
 
-    Route::get('/logout', [Logout::class, 'logout'])->name('logout');
 });
+
+Route::get('/logout', [Logout::class, 'logout'])->name('logout')->middleware('auth');
 
 
 Route::get('/email/verify', function () {

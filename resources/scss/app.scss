@@ -11,6 +11,27 @@
     }
 }
 
+.bg-main {
+    
+    @apply absolute inset-0 bg-cover bg-center;
+
+    &.small {
+        @apply bg-[url('https://i.pinimg.com/564x/49/d1/2a/49d12ae94c576c218bc751a7d7b6990c.jpg')];
+    }
+
+    &.large {
+        @apply md:bg-[url('https://i.blogs.es/2a9439/avengers_endgame_analisis_problema_marvel/1366_2000.jpeg')];  
+    }
+
+    &.page-404 {
+        @apply bg-[url('https://assets.nflxext.com/ffe/siteui/pages/errors/bg-lost-in-space.png')];
+    }
+
+    &.page-403 {
+        @apply bg-[url('https://filasiete.com/wp-content/uploads/2021/10/labatallaolvidada.jpg')];
+    }
+}
+
 h5 {
     @apply mt-4 text-xl font-medium text-gray-900;
 }

@@ -20,8 +20,9 @@
             <tbody>
                 @foreach ($movies as $movie)
                     <tr>
-                        <td><img class="w-32" src="{{ $movie->image ? asset('storage/' . $movie->image) : '' }}"
-                                alt="{{ $movie->title }}"></td>
+                        <td><img class="w-32" src="{{ Storage::url($movie->image) }}" alt="{{ $movie->title }}">
+                                
+                        </td>
                         <td>{{ $movie->title }}</td>
                         <td>{!! $movie->description !!}</td>
                         <td>{{ $movie->genres->pluck('name')->join(', ') }}</td>
